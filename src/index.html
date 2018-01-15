@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<main class="content">
+    <div class="panel" ng-controller="PizzaController as pizzaCtrl">
+        <h3 ng-if="pizzaCtrl.isLoading">Loading</h3>
+        <div class="row">
+            <div class="col-sm-1">
+                <button class="btn btn-primary" ng-click="pizzaCtrl.sort()">Sort</button>
+            </div>
+            <div class="col-sm-4">
+                <input type="text"
+                       class="form-control"
+                       ng-model="pizzaCtrl.filterText"
+                       ng-change="pizzaCtrl.filter()"
+                       placeholder="Filter Pizzas">
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Pizza</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="pizza in pizzaCtrl.pizzas track by $index">
+                <td>{{$index}}</td>
+                <td>{{pizza}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<script src="../../node_modules/angular/angular.min.js"></script>
+<script src="../../node_modules/angular-mocks/angular-mocks.js"></script>
+<script src="../../node_modules/lodash/lodash.min.js"></script>
+<script src="src/pizza.module.js"></script>
+<script src="src/pizza.controller.js"></script>
+<script src="src/pizza.service.js"></script>
+</body>
+</html>
